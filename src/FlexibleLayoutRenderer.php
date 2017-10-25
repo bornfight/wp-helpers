@@ -5,7 +5,7 @@
  * Time: 12:29
  */
 
-namespace app\helpers;
+namespace degordian\wpHelpers;
 
 
 class FlexibleLayoutRenderer
