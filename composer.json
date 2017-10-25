@@ -3,6 +3,7 @@
     "description": "Standard package for WP development used at Degordian",
     "type": "library",
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "WP team",
