@@ -1,0 +1,19 @@
+{
+    "name": "degordian/wp-helpers",
+    "description": "Standard package for WP development used at Degordian",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "WP team",
+            "email": "wpadmin@degordian.com"
+        }
+    ],
+    "require": {},
+
+    "autoload": {
+        "psr-4": {
+            "degordian\\wpHelpers\\": "src"
+        }
+    }
+}
