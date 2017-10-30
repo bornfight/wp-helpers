@@ -30,7 +30,8 @@ class FlexibleLayoutRenderer
                 array_merge(
                     $layout,
                     [
-                        'index' => $index
+                        'index' => $index,
+                        'section' => $layout
                     ]
                 )
             );
