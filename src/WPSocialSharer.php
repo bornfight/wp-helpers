@@ -5,7 +5,7 @@ class WPSocialSharer extends SocialSharer
 {
     public function getFBShareLink($url = null)
     {
-        if($url === null) {
+        if ($url === null) {
             $url = get_permalink();
         }
         return parent::getFBShareLink($url);
@@ -13,7 +13,7 @@ class WPSocialSharer extends SocialSharer
 
     public function getTwitterShareLink($url = null)
     {
-        if($url === null) {
+        if ($url === null) {
             $url = get_permalink();
         }
         return parent::getTwitterShareLink($url);
@@ -21,7 +21,7 @@ class WPSocialSharer extends SocialSharer
 
     public function getLinkedInShareLink($url = null)
     {
-        if($url === null) {
+        if ($url === null) {
             $url = get_permalink();
         }
         return parent::getLinkedInShareLink($url);
@@ -29,7 +29,7 @@ class WPSocialSharer extends SocialSharer
 
     public function getGooglePlusShareLink($url = null)
     {
-        if($url === null) {
+        if ($url === null) {
             $url = get_permalink();
         }
         return parent::getGooglePlusShareLink($url);
@@ -37,7 +37,7 @@ class WPSocialSharer extends SocialSharer
 
     public function getEmailShareLink($url = null)
     {
-        if($url === null) {
+        if ($url === null) {
             $url = get_permalink();
         }
         return parent::getEmailShareLink($url);
@@ -45,7 +45,7 @@ class WPSocialSharer extends SocialSharer
 
     public function getFBShareCount($url = null)
     {
-        if($url === null) {
+        if ($url === null) {
             $url = get_permalink();
         }
         return parent::getFBShareCount($url);
@@ -53,7 +53,7 @@ class WPSocialSharer extends SocialSharer
 
     public function getTwitterShareCount($url = null)
     {
-        if($url === null) {
+        if ($url === null) {
             $url = get_permalink();
         }
         return parent::getTwitterShareCount($url);
@@ -61,11 +61,9 @@ class WPSocialSharer extends SocialSharer
 
     public function getLinkedInShareCount($url = null)
     {
-        if($url === null) {
+        if ($url === null) {
             $url = get_permalink();
         }
         return parent::getLinkedInShareCount($url);
     }
-
-
 }
