@@ -2,7 +2,6 @@
 
 namespace degordian\wpHelpers;
 
-
 class SocialSharer
 {
 
@@ -38,7 +37,7 @@ class SocialSharer
         try {
             $data = json_decode(@file_get_contents($link));
 
-            if(isset($data->share) && isset($data->share->share_count)) {
+            if (isset($data->share) && isset($data->share->share_count)) {
                 return $data->share->share_count;
             }
 

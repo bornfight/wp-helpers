@@ -7,7 +7,6 @@
 
 namespace degordian\wpHelpers;
 
-
 class FlexibleLayoutRenderer
 {
     private $basePath = '';
@@ -42,6 +41,4 @@ class FlexibleLayoutRenderer
     {
         return $this->basePath . DIRECTORY_SEPARATOR . $partialName;
     }
-
-
 }

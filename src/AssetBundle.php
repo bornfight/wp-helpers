@@ -7,7 +7,6 @@
 
 namespace degordian\wpHelpers;
 
-
 class AssetBundle
 {
     protected static $includeBasePath = '/static/';
@@ -31,8 +30,8 @@ class AssetBundle
 
     protected function enqueueScripts()
     {
-        foreach($this->js as $handle => $data) {
-            if(isset($data['path']) === false) {
+        foreach ($this->js as $handle => $data) {
+            if (isset($data['path']) === false) {
                 throw new \Exception('Missing path definition for ' . $handle);
             }
 
@@ -46,8 +45,8 @@ class AssetBundle
 
     protected function enqueueStyles()
     {
-        if($this->asyncCss) {
-            add_action('wp_head', function() {
+        if ($this->asyncCss) {
+            add_action('wp_head', function () {
                 ?>
                 <script>
                     function loadCSS(e, n, o, t) {
@@ -76,8 +75,8 @@ class AssetBundle
                 <?php
             });
         } else {
-            foreach($this->css as $handle => $data) {
-                if(isset($data['path']) === false) {
+            foreach ($this->css as $handle => $data) {
+                if (isset($data['path']) === false) {
                     throw new \Exception('Missing path definition for ' . $handle);
                 }
 
@@ -87,8 +86,6 @@ class AssetBundle
 
                 wp_enqueue_style($handle, $this->getBasePath() . $path, [], $version, $inFooter);
             }
-
         }
     }
-
 }
