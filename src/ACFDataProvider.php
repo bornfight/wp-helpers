@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace degordian\wpHelpers;
 
@@ -8,24 +9,16 @@ namespace degordian\wpHelpers;
  */
 class ACFDataProvider
 {
-    /**
-     *
-     */
     const OPTION = 'option';
-    /**
-     * @var null
-     */
-    private static $instance = null;
+
+    private static ?ACFDataProvider $instance = null;
+
+    private string $prefix = '';
 
     /**
-     * @var string
+     * @var array<string, mixed>
      */
-    private $prefix = '';
-
-    /**
-     * @var array
-     */
-    private $fields = [];
+    private array $fields = [];
 
     /**
      * DataProvider constructor.
@@ -34,10 +27,7 @@ class ACFDataProvider
     {
     }
 
-    /**
-     * @return ACFDataProvider|null
-     */
-    public static function getInstance()
+    public static function getInstance(): ACFDataProvider
     {
         if (self::$instance === null) {
             self::$instance = new ACFDataProvider();
@@ -46,26 +36,21 @@ class ACFDataProvider
         return self::$instance;
     }
 
-
     /**
-     * @param $name
-     * @param bool $prefixed
-     * @return bool|mixed|null
+     * @return mixed
      */
-    public function getOptionField($name, $prefixed = true)
+    public function getOptionField(string $name, bool $prefixed = true)
     {
         return $this->getField($name, self::OPTION, $prefixed);
     }
 
     /**
-     * @param $name
-     * @param bool $postID
-     * @param bool $prefixed
-     * @return bool|mixed|null
+     * @param null|string|int $postID
+     * @return mixed
      */
-    public function getField($name, $postID = false, $prefixed = true)
+    public function getField(string $name, $postID = null, bool $prefixed = true)
     {
-        $postID = $postID !== false ? $postID : get_the_ID();
+        $postID = $postID !== null ? $postID : get_the_ID();
         $key = ($prefixed ? $this->prefix : '' ) . $name;
 
         $cacheKey = 'field_' . $key . '_' . $postID;
@@ -81,30 +66,23 @@ class ACFDataProvider
         return $this->fields[$cacheKey];
     }
 
-    /**
-     * @param string $prefix
-     * @return $this
-     */
-    public function setPrefix($prefix)
+    public function setPrefix(string $prefix): self
     {
         $this->prefix = $prefix;
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function clearPrefix()
+    public function clearPrefix(): self
     {
         $this->prefix = '';
         return $this;
     }
 
     /**
-     * @param bool $postID
-     * @return array|bool
+     * @param null|string|int $postID
+     * @return array<string, mixed>|bool
      */
-    public function getFields($postID = false)
+    public function getFields($postID = null)
     {
         $postID = $postID !== false ? $postID : get_the_ID();
         $key = 'fields_' . $postID;
@@ -116,13 +94,17 @@ class ACFDataProvider
         return $this->fields[$key];
     }
 
-    public function getUserField($name, $userID = null, $prefixed = true)
+    /**
+     * @param null|string|int $userID
+     * @return mixed
+     */
+    public function getUserField(string $name, $userID = null, bool $prefixed = true)
     {
         if ($userID === null && is_single()) {
             $userID = get_the_author_meta('ID');
         }
 
-        if ($userID) {
+        if ($userID !== null) {
             return $this->getField($name, 'user_' . $userID, $prefixed);
         }
 

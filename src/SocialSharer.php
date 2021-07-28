@@ -1,36 +1,36 @@
 <?php
+declare(strict_types=1);
 
 namespace degordian\wpHelpers;
 
 class SocialSharer
 {
-
-    public function getFBShareLink($url)
+    public function getFBShareLink($url): string
     {
         return sprintf('https://www.facebook.com/sharer/sharer.php?u=%s', $url);
     }
 
-    public function getTwitterShareLink($url)
+    public function getTwitterShareLink($url): string
     {
         return sprintf('https://twitter.com/home?status=%s', $url);
     }
 
-    public function getLinkedInShareLink($url)
+    public function getLinkedInShareLink($url): string
     {
         return sprintf('https://www.linkedin.com/shareArticle?mini=true&url=%s&title=%s&summary=&source=', $url, 'Mercury Processing');
     }
 
-    public function getGooglePlusShareLink($url)
+    public function getGooglePlusShareLink($url): string
     {
         return sprintf('https://plus.google.com/share?url=%s', $url);
     }
 
-    public function getEmailShareLink($url)
+    public function getEmailShareLink($url): string
     {
         return sprintf('mailto:?to=&body=%s&subject=%s', $url, 'Mercury Processing');
     }
 
-    public function getFBShareCount($url)
+    public function getFBShareCount($url): int
     {
         $link = sprintf('https://graph.facebook.com/?id=%s', $url);
 
@@ -47,7 +47,7 @@ class SocialSharer
         }
     }
 
-    public function getTwitterShareCount($url)
+    public function getTwitterShareCount($url): int
     {
         $link = sprintf('http://opensharecount.com/count.json?url=%s', $url);
 
@@ -61,7 +61,7 @@ class SocialSharer
         }
     }
 
-    public function getLinkedInShareCount($url)
+    public function getLinkedInShareCount($url): int
     {
         $link = sprintf('http://www.linkedin.com/countserv/count/share?url=%s&format=json', $url);
 

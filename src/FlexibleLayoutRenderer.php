@@ -1,25 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * Date: 16/05/2017
- * Time: 12:29
- */
+declare(strict_types=1);
 
 namespace degordian\wpHelpers;
 
 class FlexibleLayoutRenderer
 {
-    private $basePath = '';
+    private string $basePath = '';
 
-    /**
-     * FlexibleLayoutRenderer constructor.
-     * @param string $basePath
-     */
-    public function __construct($basePath)
+    public function __construct(string $basePath)
     {
         $this->basePath = $basePath;
     }
 
+    /**
+     * @return void|string
+     */
     public function render($data)
     {
         $index = 0;
@@ -37,7 +32,7 @@ class FlexibleLayoutRenderer
         }
     }
 
-    private function getPartialPath($partialName)
+    private function getPartialPath(string $partialName): string
     {
         return $this->basePath . DIRECTORY_SEPARATOR . $partialName;
     }
