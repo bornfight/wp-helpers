@@ -1,26 +1,27 @@
 <?php
-/**
- * Created by PhpStorm.
- * Date: 24/07/2017
- * Time: 15:34
- */
+declare(strict_types=1);
 
 namespace degordian\wpHelpers;
 
+use Exception;
+
 class AssetBundle
 {
-    protected static $includeBasePath = '/static/';
+    protected static string $includeBasePath = '/static/';
 
-    public $js = [];
-    public $css = [];
+    public array $js = [];
+    public array $css = [];
 
-    public $asyncCss = false;
+    public bool $asyncCss = false;
 
-    public function getBasePath()
+    public function getBasePath(): string
     {
         return INCLUDE_URL . self::$includeBasePath;
     }
 
+    /**
+     * @throws Exception
+     */
     public static function register()
     {
         $bundle = new static();
@@ -28,22 +29,28 @@ class AssetBundle
         $bundle->enqueueStyles();
     }
 
-    protected function enqueueScripts()
+    /**
+     * @throws Exception
+     */
+    protected function enqueueScripts(): void
     {
         foreach ($this->js as $handle => $data) {
             if (isset($data['path']) === false) {
-                throw new \Exception('Missing path definition for ' . $handle);
+                throw new Exception('Missing path definition for ' . $handle);
             }
 
             $path = $data['path'];
-            $version = isset($data['version']) ? $data['version'] : 1.0;
-            $inFooter = isset($data['inFooter']) ? $data['inFooter'] : true;
+            $version = $data['version'] ?? 1.0;
+            $inFooter = $data['inFooter'] ?? true;
 
             wp_enqueue_script($handle, $this->getBasePath() . $path, [], $version, $inFooter);
         }
     }
 
-    protected function enqueueStyles()
+    /**
+     * @throws Exception
+     */
+    protected function enqueueStyles(): void
     {
         if ($this->asyncCss) {
             add_action('wp_head', function () {
@@ -77,12 +84,12 @@ class AssetBundle
         } else {
             foreach ($this->css as $handle => $data) {
                 if (isset($data['path']) === false) {
-                    throw new \Exception('Missing path definition for ' . $handle);
+                    throw new Exception('Missing path definition for ' . $handle);
                 }
 
                 $path = $data['path'];
-                $version = isset($data['version']) ? $data['version'] : 1.0;
-                $inFooter = isset($data['inFooter']) ? $data['inFooter'] : true;
+                $version = $data['version'] ?? 1.0;
+                $inFooter = $data['inFooter'] ?? true;
 
                 wp_enqueue_style($handle, $this->getBasePath() . $path, [], $version, $inFooter);
             }
