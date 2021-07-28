@@ -78,6 +78,12 @@ class ACFDataProvider
         return $this;
     }
 
+    public function clearCache(): self
+    {
+        $this->fields = [];
+        return $this;
+    }
+
     /**
      * @param null|string|int $postID
      * @return array<string, mixed>|bool
