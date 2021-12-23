@@ -48,7 +48,7 @@ class AssetBundle {
 				$version .= sprintf( '.%d', filemtime( $this->getBasePath() . $path ) );
 			}
 
-			wp_enqueue_script( $handle, $this->getBasePath() . $path, [], $version, $inFooter );
+			wp_enqueue_script( $handle, $this->getBaseUrl() . $path, [], $version, $inFooter );
 		}
 	}
 
